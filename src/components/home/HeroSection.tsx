@@ -27,13 +27,12 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/90 via-transparent to-bg-primary/30 z-10 lg:hidden" />
         </div>
 
-        {/* Content with generous, balanced horizontal padding */}
-        <div className="relative z-20 w-full max-w-[1440px] mx-auto px-8 sm:px-14 md:px-20 lg:px-28 xl:px-36 2xl:px-44 py-24 sm:py-28 lg:py-36">
+        {/* Content aligned to universal site-container */}
+        <div className="relative z-20 site-container py-24 sm:py-28 lg:py-36">
           <div className="max-w-xl lg:max-w-2xl pl-1 sm:pl-3">
             <div
-              className={`transition-all duration-700 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
             >
               {/* Decorative line */}
               <div className="flex items-center gap-3.5 mb-6">
@@ -49,9 +48,8 @@ export default function HeroSection() {
             </div>
 
             <div
-              className={`transition-all duration-700 delay-200 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
             >
               <p className="text-text-secondary text-base sm:text-lg lg:text-xl leading-relaxed max-w-lg mb-10">
                 {hero.description}
@@ -79,13 +77,12 @@ export default function HeroSection() {
         </div>
 
         {/* Scroll indicator */}
-        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-1000 delay-700 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}>
+        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'
+          }`}>
           <div className="flex flex-col items-center gap-2">
             <span className="text-[10px] tracking-[0.3em] uppercase text-text-muted">Scroll</span>
             <div className="w-px h-8 bg-border-medium relative overflow-hidden">
-              <div className="w-full h-1/2 bg-forest absolute animate-[slide-down_1.5s_ease-in-out_infinite]" 
+              <div className="w-full h-1/2 bg-forest absolute animate-[slide-down_1.5s_ease-in-out_infinite]"
                 style={{ animation: 'slide-down 1.5s ease-in-out infinite' }} />
             </div>
           </div>

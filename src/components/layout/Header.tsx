@@ -29,7 +29,7 @@ export default function Header() {
 
       <header className="bg-bg-cream/95 backdrop-blur-sm border-b border-border-light sticky top-0 z-50">
         {/* Main Header Row */}
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+        <div className="site-container">
           <div className="flex items-center justify-between h-16 sm:h-18 lg:h-20 gap-4">
             {/* Left: Mobile hamburger + Brand Logo */}
             <div className="flex items-center gap-3">
@@ -61,18 +61,21 @@ export default function Header() {
                 }}
                 className="relative w-full"
               >
-                <Search
-                  size={19}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-forest/60 pointer-events-none"
-                  strokeWidth={1.75}
-                />
                 <input
                   name="search"
                   type="text"
                   placeholder="Search for silk sarees, bridal, kanjivaram, colors..."
-                  className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm bg-white/90 hover:bg-white focus:bg-white border border-border-medium focus:border-forest rounded-full outline-none transition-all placeholder:text-text-muted text-text-primary shadow-2xs focus:shadow-md"
+                  className="w-full pl-5 pr-12 py-2.5 text-xs sm:text-sm bg-white hover:bg-white focus:bg-white border border-border-medium focus:border-forest rounded-full outline-none transition-all placeholder:text-text-muted text-text-primary shadow-2xs hover:shadow-xs focus:shadow-md"
                   onClick={() => setSearchOpen(true)}
                 />
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen(true)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-forest/60 hover:text-forest hover:bg-forest/5 transition-all cursor-pointer"
+                  aria-label="Open search dialog"
+                >
+                  <Search size={18} strokeWidth={1.75} />
+                </button>
               </form>
             </div>
 
@@ -149,7 +152,7 @@ export default function Header() {
           className="hidden lg:block border-t border-border-light/60"
           aria-label="Main navigation"
         >
-          <div className="max-w-[1400px] mx-auto px-8">
+          <div className="site-container">
             <ul className="flex items-center justify-center gap-5 xl:gap-7 py-2.5 flex-wrap">
               {mainNavigation.map((item) => {
                 const isActive = location.pathname === item.href;
@@ -157,11 +160,10 @@ export default function Header() {
                   <li key={item.href}>
                     <Link
                       to={item.href}
-                      className={`nav-link text-[11px] tracking-[0.14em] uppercase font-medium py-1 ${
-                        isActive
-                          ? 'text-forest active'
-                          : 'text-text-secondary hover:text-forest'
-                      }`}
+                      className={`nav-link text-[11px] tracking-[0.14em] uppercase font-medium py-1 ${isActive
+                        ? 'text-forest active'
+                        : 'text-text-secondary hover:text-forest'
+                        }`}
                     >
                       {item.label}
                     </Link>

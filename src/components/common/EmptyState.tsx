@@ -52,7 +52,7 @@ export default function EmptyState({
   const config = defaults[type];
 
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
+    <div className="flex flex-col items-center justify-center py-24 sm:py-32 px-6 sm:px-10 text-center">
       <div className="text-text-light mb-6">{config.icon}</div>
       <h2 className="font-serif text-2xl text-text-primary mb-3">
         {title || config.title}

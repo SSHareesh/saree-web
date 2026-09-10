@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ChevronDown, X } from 'lucide-react';
+import { ChevronDown, X, Filter, Check } from 'lucide-react';
 import type { FilterCategory, ActiveFilters } from '../../types';
 import { useClickOutside } from '../../hooks';
 
@@ -20,48 +20,71 @@ function FilterDropdown({
   const dropdownRef = useClickOutside<HTMLDivElement>(close);
 
   return (
-    <div ref={dropdownRef} className="relative">
+    <div ref={dropdownRef} className={`relative ${isOpen ? 'z-50' : 'z-10'}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-4 py-2.5 border text-xs tracking-wider uppercase rounded-md shadow-2xs transition-all ${
+        className={`group flex items-center justify-between gap-3.5 px-5 sm:px-6 py-3 sm:py-3.5 min-w-[150px] sm:min-w-[175px] border text-xs sm:text-sm tracking-wider uppercase rounded-md transition-all duration-200 cursor-pointer select-none ${
           selected.length > 0
-            ? 'border-forest text-forest bg-forest/5 font-medium'
-            : 'border-border-medium text-text-secondary hover:border-forest hover:text-forest bg-white/80'
-        }`}
+            ? 'bg-forest/5 text-forest border-forest font-semibold shadow-xs'
+            : 'bg-white border-border-medium text-text-primary hover:border-forest hover:text-forest hover:shadow-xs shadow-2xs'
+        } ${isOpen ? 'ring-2 ring-forest/20 border-forest' : ''}`}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
-        {filter.name}
-        {selected.length > 0 && (
-          <span className="bg-forest text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-            {selected.length}
-          </span>
-        )}
-        <ChevronDown
-          size={14}
-          className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-        />
+        <span className="font-semibold truncate">{filter.name}</span>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {selected.length > 0 && (
+            <span className="bg-forest text-white text-[11px] min-w-[20px] h-[20px] px-1.5 rounded-full flex items-center justify-center font-bold shadow-2xs">
+              {selected.length}
+            </span>
+          )}
+          <ChevronDown
+            size={16}
+            className={`transition-transform duration-200 ${
+              isOpen ? 'rotate-180 text-forest' : selected.length > 0 ? 'text-forest' : 'text-text-muted group-hover:text-forest'
+            }`}
+          />
+        </div>
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1.5 bg-white border border-border-light rounded-md shadow-lg z-30 min-w-[220px] max-h-[300px] overflow-y-auto animate-scale-in">
-          <div className="py-2">
+        <div className="absolute top-full left-0 mt-2 bg-white border border-border-light rounded-lg shadow-2xl z-50 min-w-[280px] sm:min-w-[320px] max-h-[380px] overflow-y-auto animate-scale-in p-2.5">
+          <div className="px-3.5 py-2.5 border-b border-border-light/60 flex items-center justify-between mb-1.5">
+            <span className="text-xs font-bold tracking-wider uppercase text-text-muted">
+              {filter.name}
+            </span>
+            {selected.length > 0 && (
+              <span className="text-xs text-forest font-bold">
+                {selected.length} selected
+              </span>
+            )}
+          </div>
+          <div className="space-y-1">
             {filter.options.map((option) => {
               const isChecked = selected.includes(option.value);
               return (
                 <label
                   key={option.value}
-                  className="flex items-center gap-3 px-4 py-2 hover:bg-bg-secondary cursor-pointer transition-colors"
+                  className={`flex items-center justify-between px-3.5 py-3 rounded-md cursor-pointer transition-all duration-150 ${
+                    isChecked
+                      ? 'bg-forest/5 text-forest font-semibold'
+                      : 'hover:bg-bg-secondary text-text-primary'
+                  }`}
                 >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => onFilterChange(filter.id, option.value)}
-                    className="filter-checkbox"
-                  />
-                  <span className="text-sm text-text-primary">
-                    {option.label}
-                  </span>
+                  <div className="flex items-center gap-3.5">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={() => onFilterChange(filter.id, option.value)}
+                      className="filter-checkbox"
+                    />
+                    <span className="text-sm font-sans leading-normal">
+                      {option.label}
+                    </span>
+                  </div>
+                  {isChecked && (
+                    <Check size={16} className="text-forest flex-shrink-0" />
+                  )}
                 </label>
               );
             })}
@@ -92,22 +115,10 @@ export default function FilterBar({
   totalActive,
 }: FilterBarProps) {
   return (
-    <div className="hidden lg:flex items-center gap-3 flex-wrap py-4">
-      <div className="flex items-center gap-2 mr-2">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-text-secondary"
-        >
-          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-        </svg>
-        <span className="text-xs tracking-wider uppercase text-text-secondary font-medium">
+    <div className="flex items-center gap-3.5 sm:gap-4 flex-wrap">
+      <div className="flex items-center gap-2.5 pr-2">
+        <Filter size={17} className="text-forest flex-shrink-0" />
+        <span className="text-xs sm:text-sm tracking-[0.2em] uppercase text-forest font-bold whitespace-nowrap">
           Refined By
         </span>
       </div>
@@ -124,9 +135,9 @@ export default function FilterBar({
       {totalActive > 0 && (
         <button
           onClick={onClearAll}
-          className="flex items-center gap-1.5 px-3 py-2 text-xs text-discount hover:text-discount/80 transition-colors"
+          className="flex items-center gap-2 px-4 py-3 text-xs sm:text-sm uppercase tracking-wider text-discount hover:text-discount font-semibold border border-discount/30 hover:border-discount rounded-md hover:bg-discount/5 transition-all cursor-pointer shadow-2xs"
         >
-          <X size={14} />
+          <X size={15} />
           Clear All ({totalActive})
         </button>
       )}

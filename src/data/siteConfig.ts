@@ -3,7 +3,7 @@ import type { SiteConfig, HeroBanner } from '../types';
 export const siteConfig: SiteConfig = {
   brandName: 'VASTHRAM',
   tagline: 'Timeless Elegance, Woven for You',
-  whatsappNumber: '919876543210',
+  whatsappNumber: '918610236842',
   currency: 'INR',
   currencySymbol: '₹',
   announcementMessages: [

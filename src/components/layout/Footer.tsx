@@ -46,7 +46,7 @@ export default function Footer() {
     <footer className="bg-forest text-white/80">
       {/* Newsletter / Brand Section */}
       <div className="border-b border-white/10">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28 py-16 lg:py-20">
+        <div className="site-container py-16 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="font-serif text-3xl lg:text-4xl text-white mb-3">
@@ -91,7 +91,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28 py-14 lg:py-16">
+      <div className="site-container py-14 lg:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {/* Shop */}
           <div>
@@ -175,7 +175,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/[0.07]">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28 py-6">
+        <div className="site-container py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-white/25 tracking-wide">
             <p>© {currentYear} {siteConfig.brandName}. All rights reserved.</p>
             <div className="flex items-center gap-6">

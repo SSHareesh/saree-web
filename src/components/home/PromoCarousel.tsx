@@ -6,7 +6,7 @@ export default function PromoCarousel() {
   const repeatedMessages = [...messages, ...messages, ...messages];
 
   return (
-    <section className="py-8 sm:py-10 my-16 sm:my-20 lg:my-24 bg-forest/[0.03] border-y border-border-light overflow-hidden">
+    <section className="py-8 sm:py-10 my-16 sm:my-24 lg:my-28 bg-forest/[0.03] border-y border-border-light overflow-hidden">
       <div className="marquee-container">
         <div className="marquee-content gap-0">
           {repeatedMessages.map((message, index) => (

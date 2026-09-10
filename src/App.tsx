@@ -36,7 +36,7 @@ export default function App() {
             <Route
               path="*"
               element={
-                <div className="flex items-center justify-center py-40 text-center">
+                <div className="site-container py-36 text-center">
                   <div>
                     <h1 className="font-serif text-4xl text-forest mb-4">
                       Page Not Found

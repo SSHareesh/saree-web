@@ -28,8 +28,8 @@ export default function TrustBadges() {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 lg:py-40 border-t border-border-light bg-bg-cream/50">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28">
+    <section ref={ref} className="site-section border-t border-border-light bg-bg-cream/50">
+      <div className="site-container">
         <div
           className={`grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'

@@ -58,7 +58,7 @@ export default function FilterDrawer({
         {/* Content: 2-column layout */}
         <div className="flex-1 flex overflow-hidden">
           {/* Category List */}
-          <div className="w-[120px] flex-shrink-0 border-r border-border-light bg-bg-secondary overflow-y-auto">
+          <div className="w-[130px] sm:w-[145px] flex-shrink-0 border-r border-border-light bg-bg-secondary overflow-y-auto">
             {filters.map((filter) => {
               const isActive = activeCategory === filter.id;
               const selectedCount =
@@ -67,7 +67,7 @@ export default function FilterDrawer({
                 <button
                   key={filter.id}
                   onClick={() => setActiveCategory(filter.id)}
-                  className={`w-full text-left px-4 py-3.5 text-xs tracking-wider uppercase font-medium transition-colors relative ${
+                  className={`w-full text-left px-4 py-4 text-xs sm:text-sm tracking-wider uppercase font-semibold transition-colors relative ${
                     isActive
                       ? 'text-forest bg-bg-cream'
                       : 'text-text-secondary hover:text-forest'
@@ -75,7 +75,7 @@ export default function FilterDrawer({
                 >
                   {filter.name}
                   {selectedCount > 0 && (
-                    <span className="absolute top-2 right-2 w-4 h-4 bg-forest text-white text-[10px] rounded-full flex items-center justify-center">
+                    <span className="absolute top-2.5 right-2 min-w-[20px] h-[20px] px-1 bg-accent-gold text-forest text-[11px] font-bold rounded-full flex items-center justify-center shadow-xs">
                       {selectedCount}
                     </span>
                   )}
@@ -85,7 +85,7 @@ export default function FilterDrawer({
           </div>
 
           {/* Options */}
-          <div className="flex-1 overflow-y-auto py-2">
+          <div className="flex-1 overflow-y-auto py-3">
             {activeFilter &&
               activeFilter.options.map((option) => {
                 const isChecked = (
@@ -94,7 +94,7 @@ export default function FilterDrawer({
                 return (
                   <label
                     key={option.value}
-                    className="flex items-center gap-3 px-5 py-3 hover:bg-bg-secondary cursor-pointer transition-colors"
+                    className="flex items-center gap-3.5 px-5 sm:px-6 py-3.5 hover:bg-bg-secondary cursor-pointer transition-colors"
                   >
                     <input
                       type="checkbox"
@@ -104,7 +104,7 @@ export default function FilterDrawer({
                       }
                       className="filter-checkbox"
                     />
-                    <span className="text-sm text-text-primary">
+                    <span className="text-sm sm:text-base text-text-primary">
                       {option.label}
                     </span>
                   </label>

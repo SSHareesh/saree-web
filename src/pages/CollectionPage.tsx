@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { SlidersHorizontal } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import { getProductsByCollection } from '../data/products';
 import { getCollectionBySlug } from '../data/collections';
 import { filterCategories } from '../data/filters';
@@ -96,7 +96,7 @@ export default function CollectionPage() {
         }
       />
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28 py-6 sm:py-10">
+      <div className="site-container py-8 sm:py-12 lg:py-16">
         {/* Breadcrumb */}
         <div className="mb-4 sm:mb-8">
           <Breadcrumb items={[{ label: collectionName }]} />
@@ -123,35 +123,90 @@ export default function CollectionPage() {
           </p>
         </div>
 
-        {/* Filter & Sort Controls */}
-        <div className="border-y border-border-light my-6 sm:my-8 py-3">
+        {/* Filter & Sort Controls (Matches Reference Image) */}
+        <div className="relative z-30 pt-6 pb-6 sm:pt-8 sm:pb-8">
+          {/* Top Row: Refined By + Filter Pills */}
           <div className="flex items-center justify-between gap-4">
             {/* Desktop Filters */}
-            <FilterBar
-              filters={filterCategories}
-              activeFilters={activeFilters}
-              onFilterChange={handleFilterChange}
-              onClearAll={handleClearAll}
-              totalActive={totalActive}
-            />
+            <div className="hidden lg:block w-full">
+              <FilterBar
+                filters={filterCategories}
+                activeFilters={activeFilters}
+                onFilterChange={handleFilterChange}
+                onClearAll={handleClearAll}
+                totalActive={totalActive}
+              />
+            </div>
 
-            {/* Mobile Filter Button */}
-            <button
-              onClick={() => setFilterDrawerOpen(true)}
-              className="lg:hidden btn-ghost !py-2.5 !px-4 text-xs tracking-wider rounded-md font-medium shadow-2xs"
-              aria-label="Open filters"
-            >
-              <SlidersHorizontal size={14} />
-              Filter
-              {totalActive > 0 && (
-                <span className="bg-forest text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {totalActive}
-                </span>
+            {/* Mobile / Tablet Filter Button */}
+            <div className="lg:hidden flex items-center gap-3">
+              <button
+                onClick={() => setFilterDrawerOpen(true)}
+                className="flex items-center gap-3 px-5 py-3.5 bg-white border border-border-medium rounded-md text-xs sm:text-sm font-bold tracking-wider uppercase text-forest hover:border-forest hover:shadow-xs shadow-2xs transition-all cursor-pointer select-none"
+                aria-label="Open filters"
+              >
+                <Filter size={17} className="text-forest" />
+                <span>Refined By</span>
+                {totalActive > 0 && (
+                  <span className="bg-forest text-white text-[11px] min-w-[20px] h-[20px] px-1.5 rounded-full flex items-center justify-center font-bold">
+                    {totalActive}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Active Filter Chips */}
+          {totalActive > 0 && (
+            <div className="flex items-center gap-2 flex-wrap pt-4 mt-2">
+              <span className="text-xs text-text-muted uppercase tracking-wider font-semibold mr-1">
+                Active:
+              </span>
+              {Object.entries(activeFilters).flatMap(([catId, values]) =>
+                values.map((val) => {
+                  const cat = filterCategories.find((c) => c.id === catId);
+                  const opt = cat?.options.find((o) => o.value === val);
+                  return (
+                    <span
+                      key={`${catId}-${val}`}
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white text-forest border border-border-medium rounded-md text-xs font-semibold shadow-2xs"
+                    >
+                      <span>{opt?.label || val}</span>
+                      <button
+                        type="button"
+                        onClick={() => handleFilterChange(catId, val)}
+                        className="text-forest/60 hover:text-discount cursor-pointer transition-colors"
+                        aria-label={`Remove ${opt?.label || val} filter`}
+                      >
+                        <X size={13} />
+                      </button>
+                    </span>
+                  );
+                })
               )}
-            </button>
+              <button
+                type="button"
+                onClick={handleClearAll}
+                className="text-xs text-discount hover:underline font-semibold ml-2 cursor-pointer transition-colors"
+              >
+                Clear all
+              </button>
+            </div>
+          )}
 
-            {/* Sort */}
-            <div className="py-2">
+          {/* Full-width Divider Line (as seen in reference image) */}
+          <div className="w-full border-t border-border-light my-8 pt-4 sm:my-10" />
+
+          {/* Sub-bar: Product Count on left, SORT BY on right (exactly as in reference image) */}
+          <div className="flex items-center justify-between gap-4 py-2">
+            <span className="text-xs sm:text-sm tracking-wider uppercase text-text-muted font-medium">
+              {sortedProducts.length} product{sortedProducts.length !== 1 ? 's' : ''} available
+            </span>
+
+            <div className="flex items-center gap-3.5">
+              <span className="text-xs sm:text-sm tracking-wider uppercase text-text-secondary font-semibold whitespace-nowrap">
+                Sort By
+              </span>
               <SortDropdown
                 currentSort={currentSort}
                 onSortChange={handleSortChange}
@@ -160,8 +215,8 @@ export default function CollectionPage() {
           </div>
         </div>
 
-        {/* Products */}
-        <div className="py-12 sm:py-16 lg:py-24">
+        {/* Generous Space Between Filters/Sort and Products Grid (Guaranteed uncollapsible top and bottom padding) */}
+        <div className="relative z-10 pt-12 sm:pt-16 lg:pt-20 pb-24 sm:pb-32 lg:pb-40">
           {sortedProducts.length > 0 ? (
             <ProductGrid products={sortedProducts} />
           ) : allCollectionProducts.length > 0 ? (

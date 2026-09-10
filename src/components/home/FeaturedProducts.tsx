@@ -14,8 +14,8 @@ export default function FeaturedProducts() {
   return (
     <>
       {/* Featured Products */}
-      <section ref={ref1} className="py-24 sm:py-32 lg:py-40 bg-bg-cream">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28">
+      <section ref={ref1} className="site-section bg-bg-cream">
+        <div className="site-container">
           <div
             className={`transition-all duration-700 ${
               vis1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -58,11 +58,13 @@ export default function FeaturedProducts() {
       </section>
 
       {/* Decorative divider between sections */}
-      <div className="w-full border-t border-border-light/70" />
+      <div className="section-divider">
+        <div className="section-divider-line" />
+      </div>
 
       {/* New Arrivals Band */}
-      <section ref={ref2} className="py-24 sm:py-32 lg:py-40 bg-bg-secondary">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28">
+      <section ref={ref2} className="site-section bg-bg-secondary/60">
+        <div className="site-container">
           <div
             className={`transition-all duration-700 ${
               vis2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'

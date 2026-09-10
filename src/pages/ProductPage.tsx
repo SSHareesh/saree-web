@@ -22,7 +22,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 py-20">
+      <div className="site-container py-20">
         <EmptyState
           type="products"
           title="Product Not Found"
@@ -37,7 +37,7 @@ export default function ProductPage() {
       <title>{product.name} — VASTHRAM</title>
       <meta name="description" content={product.description} />
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28 py-6 sm:py-10">
+      <div className="site-container py-8 sm:py-12 lg:py-16">
         {/* Breadcrumb */}
         <div className="mb-4 sm:mb-8">
           <Breadcrumb

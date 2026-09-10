@@ -43,7 +43,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
       <div className="relative bg-bg-cream animate-slide-up max-h-[90vh] flex flex-col">
         {/* Search Input */}
         <div className="border-b border-border-light">
-          <div className="max-w-[900px] mx-auto px-4 lg:px-8 py-6">
+          <div className="max-w-[900px] mx-auto px-6 sm:px-10 lg:px-12 py-6">
             <div className="flex items-center gap-4">
               <SearchIcon size={20} className="text-text-muted flex-shrink-0" />
               <input
@@ -68,7 +68,7 @@ export default function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
 
         {/* Results */}
         <div className="flex-1 overflow-y-auto">
-          <div className="max-w-[900px] mx-auto px-4 lg:px-8 py-6">
+          <div className="max-w-[900px] mx-auto px-6 sm:px-10 lg:px-12 py-6">
             {debouncedQuery.length >= 2 && results.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-text-muted text-sm mb-1">

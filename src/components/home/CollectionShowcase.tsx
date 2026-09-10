@@ -21,9 +21,8 @@ function CollectionCard({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-600 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
+      className={`transition-all duration-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <Link to={`/collection/${slug}`} className="group block">
@@ -69,13 +68,12 @@ export default function CollectionShowcase() {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 lg:py-40 bg-bg-primary">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-12 md:px-16 lg:px-20 xl:px-28">
+    <section ref={ref} className="site-section bg-bg-primary">
+      <div className="site-container">
         {/* Section Header */}
         <div
-          className={`text-center mb-16 lg:mb-24 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mb-16 lg:mb-24 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-12 h-px bg-border-medium" />
@@ -102,6 +100,11 @@ export default function CollectionShowcase() {
             />
           ))}
         </div>
+      </div>
+
+      {/* Elegant section divider */}
+      <div className="section-divider mt-20 sm:mt-28">
+        <div className="section-divider-line" />
       </div>
     </section>
   );

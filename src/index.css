@@ -61,6 +61,7 @@
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -68,18 +69,33 @@
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes slide-in-left {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 @keyframes slide-up {
@@ -87,6 +103,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -94,8 +111,13 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scale-in {
@@ -103,6 +125,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -114,6 +137,7 @@
     opacity: 0;
     transform: translateY(-12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -125,6 +149,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(-12px);
@@ -132,8 +157,13 @@
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ============================================================
@@ -162,7 +192,12 @@ body {
 /* ============================================================
    Typography
    ============================================================ */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 500;
   line-height: 1.2;
@@ -241,6 +276,7 @@ h1, h2, h3, h4, h5, h6 {
    Reduced Motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -273,28 +309,35 @@ h1, h2, h3, h4, h5, h6 {
    ============================================================ */
 .filter-checkbox {
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border: 1.5px solid var(--color-border-dark);
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
   position: relative;
   flex-shrink: 0;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   background: var(--color-bg-white);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.filter-checkbox:hover {
+  border-color: var(--color-forest);
+  box-shadow: 0 2px 5px rgba(27, 58, 45, 0.15);
 }
 
 .filter-checkbox:checked {
   background-color: var(--color-forest);
   border-color: var(--color-forest);
+  box-shadow: 0 2px 6px rgba(27, 58, 45, 0.25);
 }
 
 .filter-checkbox:checked::after {
   content: '';
   position: absolute;
-  left: 5px;
-  top: 1px;
-  width: 5px;
+  left: 6px;
+  top: 2.5px;
+  width: 6px;
   height: 10px;
   border: solid white;
   border-width: 0 2px 2px 0;
@@ -328,8 +371,13 @@ h1, h2, h3, h4, h5, h6 {
    Hero Scroll Indicator
    ============================================================ */
 @keyframes slide-down {
-  0% { top: -50%; }
-  100% { top: 100%; }
+  0% {
+    top: -50%;
+  }
+
+  100% {
+    top: 100%;
+  }
 }
 
 /* ============================================================
@@ -353,7 +401,8 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================================================
    Smooth hover transitions
    ============================================================ */
-a, button {
+a,
+button {
   transition-property: color, background-color, border-color, opacity, transform, box-shadow;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
@@ -396,7 +445,8 @@ a, button {
   box-shadow: 0 2px 8px -1px rgba(27, 58, 45, 0.2);
 }
 
-.btn-secondary, .btn-outline {
+.btn-secondary,
+.btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -418,14 +468,16 @@ a, button {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-secondary:hover, .btn-outline:hover {
+.btn-secondary:hover,
+.btn-outline:hover {
   background-color: var(--color-forest);
   color: #ffffff !important;
   box-shadow: 0 8px 22px -3px rgba(27, 58, 45, 0.28);
   transform: translateY(-2px);
 }
 
-.btn-secondary:active, .btn-outline:active {
+.btn-secondary:active,
+.btn-outline:active {
   transform: translateY(0) scale(0.985);
   box-shadow: 0 2px 6px -1px rgba(27, 58, 45, 0.15);
 }
@@ -504,4 +556,98 @@ a, button {
 .quantity-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+/* ============================================================
+   Universal Container & Layout System
+   ============================================================ */
+.site-container {
+  width: 100%;
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;   /* 24px on mobile */
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: 2.5rem; /* 40px on tablet */
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 3.5rem; /* 56px on desktop */
+    padding-right: 3.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-container {
+    padding-left: 4rem;   /* 64px on wide screens */
+    padding-right: 4rem;
+  }
+}
+
+/* ============================================================
+   Universal Section Spacing (Clear Vertical Separation)
+   ============================================================ */
+.site-section {
+  padding-top: 5rem;    /* 80px */
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 640px) {
+  .site-section {
+    padding-top: 6.5rem;  /* 104px */
+    padding-bottom: 6.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-section {
+    padding-top: 8rem;    /* 128px */
+    padding-bottom: 8rem;
+  }
+}
+
+/* ============================================================
+   Universal Section Dividers
+   ============================================================ */
+.section-divider {
+  width: 100%;
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-divider {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-divider {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+.section-divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border-medium) 20%,
+    var(--color-border-medium) 80%,
+    transparent 100%
+  );
+  opacity: 0.75;
 }
