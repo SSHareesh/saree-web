@@ -1,9 +1,25 @@
 import type { SiteConfig, HeroBanner } from '../types';
+import { decryptSecret } from '../utils/crypto';
+
+// Encrypted payloads so raw phone numbers never appear in plaintext in GitHub repositories
+// 'ExsSHBsaGBkcEh4Y' decrypts to WhatsApp number
+// 'ARMbChIcGxoYChkcEh4Y' decrypts to Contact phone number
+const ENCRYPTED_WHATSAPP = 'ExsSHBsaGBkcEh4Y';
+const ENCRYPTED_PHONE = 'ARMbChIcGxoYChkcEh4Y';
+
+// Prefer environment variables from .env (ignored by git), fallback to decrypted values
+const resolvedWhatsAppNumber =
+  (import.meta.env.VITE_WHATSAPP_NUMBER as string) ||
+  decryptSecret(ENCRYPTED_WHATSAPP);
+
+const resolvedContactPhone =
+  (import.meta.env.VITE_CONTACT_PHONE as string) ||
+  decryptSecret(ENCRYPTED_PHONE);
 
 export const siteConfig: SiteConfig = {
   brandName: 'VASTHRAM',
   tagline: 'Timeless Elegance, Woven for You',
-  whatsappNumber: '918610236842',
+  whatsappNumber: resolvedWhatsAppNumber,
   currency: 'INR',
   currencySymbol: '₹',
   announcementMessages: [
@@ -21,11 +37,11 @@ export const siteConfig: SiteConfig = {
   socialLinks: {
     instagram: 'https://instagram.com/vasthram',
     facebook: 'https://facebook.com/vasthram',
-    whatsapp: 'https://wa.me/919876543210',
+    whatsapp: `https://wa.me/${resolvedWhatsAppNumber}`,
   },
   contact: {
     email: 'hello@vasthram.com',
-    phone: '+91 98765 43210',
+    phone: resolvedContactPhone,
   },
   seo: {
     title: 'VASTHRAM — Premium Handcrafted Sarees',
